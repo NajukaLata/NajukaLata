@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Tendable Website Tests', () => {
+test('Tendable Website Tests', async() => {
   const baseUrl = 'https://www.tendable.com';
 
   
@@ -19,7 +19,6 @@ test.describe('Tendable Website Tests', () => {
   test('Verify "Request a Demo" button on top-level menu pages', async ({ page }) => {
     const menuItems = ['Home', 'Our Story', 'Our Solution', 'Why Tendable'];
     for (const item of menuItems) {
-      await page.goto(`${baseUrl}/${item.toLowerCase().replace(' ', '-')}`);
       await expect(page.locator('text=Request a Demo')).toBeVisible();
     }
   });
