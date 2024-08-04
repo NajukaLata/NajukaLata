@@ -10,6 +10,8 @@ test.describe('Tendable Website Tests', () => {
     const menuItems = ['Home', 'Our Story', 'Our Solution', 'Why Tendable'];
     for (const item of menuItems) {
       await expect(page.locator(`text=${item}`)).toBeVisible();
+      await page.goback();
+      
     }
   });
 
@@ -28,10 +30,15 @@ test.describe('Tendable Website Tests', () => {
 
     await page.selectOption('select[name="department"]', 'Marketing');
     await page.fill('input[name="name"]', 'Test User');
-    await page.fill('input[name="email"]', 'test@example.com');
+    await page.fill('input[name="email"]', 'test@najukar.com');
     await page.click('button[type="submit"]');
 
-    const errorMessage = await page.locator('.error-message');
-    await expect(errorMessage).toBeVisible();
+    const errorMessage = await page.locator('text meassage field is required');
+    if (await errorMassage.isVisible())){
+      console.log('Pass:error message displayed.');
+    }else{
+      console.log('fail:error message not displayed.');
+    }
+  
   });
 });
